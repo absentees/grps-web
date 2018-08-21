@@ -1,0 +1,11 @@
+{
+	"name": "grps-web",
+	"version": "1.0.0",
+	"main": "index.js",
+	"author": "absentees <scottblissett@gmail.com>",
+	"license": "MIT",
+	"scripts": {
+		"dev": "parcel serve index.html",
+		"build": "parcel build index.html"
+	}
+}
