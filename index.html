@@ -145,7 +145,7 @@
 			},
 			mounted() {
 				axios
-					.get('http://localhost:3000/api')
+					.get('https://grps.now.sh/api')
 					.then(response => (this.wines = response.data))
 					.finally((() => this.loading = false))
 			}
