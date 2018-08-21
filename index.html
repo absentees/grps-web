@@ -93,7 +93,6 @@
 			<h1>GRPS</h1>
 		</header>
 		<nav v-if="wines">
-			<a v-for="sortKey in Object.keys(sortOptions)" v-on:click="sortBy = sortKey">{{sortKey}}</a>
 			<input type="text" v-model="search" placeholder="Search GRPS...">
 		</nav>
 		<div v-if="loading" class="loader">Loading the GRPS...</div>
