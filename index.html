@@ -2,14 +2,31 @@
 <html>
 
 <head>
+	<!-- Global site tag (gtag.js) - Google Analytics -->
+	<script async src="https://www.googletagmanager.com/gtag/js?id=UA-127206551-1"></script>
+	<script>
+		window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-127206551-1');
+</script>
+
 	<meta charset="utf-8" />
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta name="theme-color" content="#000">
+	<meta name="description" content="Natural wine aggregator">
+
 	<title>GRPS</title>
 	<script src="https://cdn.jsdelivr.net/npm/vue@2.5.17/dist/vue.js"></script>
 	<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
 
 	<style>
+		body {
+			font-family: sans-serif;
+		}
+
 		a {
 			text-decoration: none;
 			color: inherit;
@@ -17,7 +34,9 @@
 		}
 
 		header>h1 {
+			font-size: 5vh;
 			text-align: center;
+			transform: rotate(-6deg);
 		}
 
 		.wine-container {
@@ -84,6 +103,10 @@
 		nav a {
 			margin: 1%;
 		}
+
+		.search-input {
+			font-size: 22px;
+		}
 	</style>
 </head>
 
@@ -93,9 +116,9 @@
 			<h1>GRPS</h1>
 		</header>
 		<nav v-if="wines">
-			<input type="text" v-model="search" placeholder="Search GRPS...">
+			<input type="text" class="search-input" v-model="search" placeholder="Search GRPS...">
 		</nav>
-		<div v-if="loading" class="loader">Loading the GRPS...</div>
+		<div v-if="loading" class="loader">Loading the GRPS (this may take a minute)...</div>
 		<transition name="fade">
 			<div v-if="wines" class="wine-container">
 				<a v-for="wine in filteredList" :href="wine.link" target="_blank">
