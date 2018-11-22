@@ -5,7 +5,7 @@
 	"author": "absentees <scottblissett@gmail.com>",
 	"license": "MIT",
 	"scripts": {
-		"dev": "parcel serve index.html",
+		"dev": "browser-sync start --server --files 'index.html'",
 		"build": "./node_modules/parcel-bundler/bin/cli.js build index.html"
 	},
 	"dependencies": {

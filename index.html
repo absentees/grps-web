@@ -34,7 +34,7 @@
 		}
 
 		header>h1 {
-			font-size: 5vh;
+			font-size: 7vh;
 			text-align: center;
 			transform: rotate(-6deg);
 		}
@@ -96,16 +96,29 @@
 		}
 
 		nav {
+			width: 75%;
+			margin: 0 auto;
 			display: flex;
-			justify-content: space-around;
+			justify-content: center;
+			flex-wrap: wrap;
 		}
 
 		nav a {
 			margin: 1%;
 		}
 
-		.search-input {
-			font-size: 22px;
+		.input, label {
+			font-size: 18px;
+			font-weight: bold;
+			line-height: 2em;
+		}
+		.input {
+			border: 0.5px solid black;
+			padding: 5px;
+		}
+
+		label{
+			margin-left: 5%;
 		}
 	</style>
 </head>
@@ -116,7 +129,9 @@
 			<h1>GRPS</h1>
 		</header>
 		<nav v-if="wines">
-			<input type="text" class="search-input" v-model="search" placeholder="Search GRPS...">
+			<input type="text" class="input search-input" v-model="search" placeholder="Search GRPS...">
+			<label for="discount-input">Apply Discount:</label>
+			<input id="discount-input" type="number" class="input discount-input" v-model="discount" min="0" max="100"><span>%</span>
 		</nav>
 		<div v-if="loading" class="loader">Loading the GRPS (this may take a minute)...</div>
 		<transition name="fade">
@@ -127,7 +142,7 @@
 						</div>
 						<h3>{{wine.title}}</h3>
 						<span class="location">{{ wine.location }}</span>
-						<span class="price">${{ wine.price }}</span>
+						<span class="price">${{ discountedPrice(wine) }}</span>
 					</div>
 				</a>
 			</div>
@@ -141,9 +156,11 @@
 				search: '',
 				wines: null,
 				loading: true,
-				sortBy: "Price: Low to High"
+				sortBy: "Price: Low to High",
+				discount: null
 			},
 			computed: {
+
 				filteredList() {
 					return this.wines.filter(wine => {
 						return wine.title.toLowerCase().includes(this.search.toLowerCase());
@@ -163,6 +180,9 @@
 			methods: {
 				sort: function (sortOrder) {
 					return this.sortOptions[sortOrder]();
+				},
+				discountedPrice(wine) {
+					return wine.price - (wine.price * (this.discount / 100));
 				}
 			},
 			mounted() {
