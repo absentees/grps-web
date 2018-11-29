@@ -40,15 +40,19 @@
 		}
 
 		.wine-container {
-			display: flex;
+			display: grid;
+			grid-template-columns: 1fr 1fr 1fr 1fr;
+			gap: 1.5%;
+			margin: 0 2%;
+			/* display: flex;
 			justify-content: space-around;
 			flex-wrap: wrap;
-			width: 100%;
+			width: 100%; */
 		}
 
 		.wine {
-			width: 250px;
-			margin: 10px 5px;
+			/* width: 250px;
+			margin: 10px 5px; */
 
 			font-size: 14px;
 		}
@@ -140,6 +144,7 @@
 					<div class="wine">
 						<div class="img"><img :src="wine.imgURL" :alt="wine.title">
 						</div>
+						<span>{{wine.sortOrder}}</span>
 						<h3>{{wine.title}}</h3>
 						<span class="location">{{ wine.location }}</span>
 						<span class="price">${{ discountedPrice(wine) }}</span>
@@ -187,7 +192,8 @@
 			},
 			mounted() {
 				axios
-					.get('https://grps.now.sh/api')
+					// .get('https://grps.now.sh/api')
+					.get('http://localhost:5000/api')
 					.then(response => (this.wines = response.data))
 					.finally((() => this.loading = false))
 			}
