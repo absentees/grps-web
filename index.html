@@ -40,14 +40,14 @@
 		}
 
 		.wine-container {
-			display: grid;
+			display: inline-grid;
 			grid-template-columns: 1fr 1fr 1fr 1fr;
 			gap: 1.5%;
 			margin: 0 2%;
 			/* display: flex;
 			justify-content: space-around;
-			flex-wrap: wrap;
-			width: 100%; */
+			flex-wrap: wrap;*/
+			width: 100%;
 		}
 
 		.wine {
@@ -69,18 +69,31 @@
 			width: 250px;
 			height: 250px;
 
-			overflow: hidden;
+			/* overflow: hidden; */
 			text-align: center;
 		}
 
 		.wine>h3 {
 			font-size: 1em;
-			margin-bottom: 0;
+			margin: 0;
 		}
 
 		.wine .location {
 			display: block;
 			font-size: 0.8em;
+		}
+
+		.wine .store {
+			font-size: 0.7rem;
+			line-height: 2em;
+		}
+
+		.store.DRNKS {
+			color: #d23d35;
+		}
+
+		.store.PNV{
+			color: #47756b;
 		}
 
 		.wine .price {
@@ -144,7 +157,7 @@
 					<div class="wine">
 						<div class="img"><img :src="wine.imgURL" :alt="wine.title">
 						</div>
-						<span>{{wine.sortOrder}}</span>
+						<span class="store" :class="wine.store">{{wine.store}}</span>
 						<h3>{{wine.title}}</h3>
 						<span class="location">{{ wine.location }}</span>
 						<span class="price">${{ discountedPrice(wine) }}</span>
